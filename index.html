@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BluePeak Digital | Design & Tech Agency</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 1. HOME / HERO SECTION -->
+  <div class="top-wrapper" id="home">
+      <nav class="navbar" id="main-navbar">
+        <a href="#home" class="logo" id="biz-name">▲ BLUEPEAK DIGITAL</a>
+
+        <!-- Desktop Center Links -->
+        <div class="nav-links">
+          <a href="#home" class="active">Home</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <!-- Desktop Right Button -->
+        <a href="#contact" class="btn-outline desktop-cta">Contact us</a>
+
+        <!-- Mobile Circular Hamburger Button (Matches Screenshot 2!) -->
+        <button class="mobile-menu-btn" id="menu-toggle" aria-label="Toggle Menu">
+          ☰
+        </button>
+
+        <!-- Mobile Dropdown Menu -->
+        <div class="mobile-drawer" id="mobile-drawer">
+          <a href="#home" onclick="closeMobileMenu()">Home</a>
+          <a href="#services" onclick="closeMobileMenu()">Services</a>
+          <a href="#about" onclick="closeMobileMenu()">About</a>
+          <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+          <a href="#contact" class="btn-primary mobile-cta" onclick="closeMobileMenu()">Contact us</a>
+        </div>
+      </nav>
+
+
+    <header class="hero">
+      <h1 id="hero-title">Design & Tech That Takes You to the Top</h1>
+      <p id="hero-desc">We've spent 12+ years working with B2B brands to create clean, user-friendly websites and apps.</p>
+      <a href="#contact" class="btn-primary">BOOK A CALL</a>
+    </header>
+  </div>
+
+  <!-- 2. BENTO GRID & SERVICES SECTION -->
+  <section class="section-block" id="services">
+    <div class="bento-grid">
+      
+      <!-- Left White Services Card -->
+      <div class="card card-white col-left">
+        <div>
+          <span class="tag">Services</span>
+          <h2>Design & Development</h2>
+          <p class="subtitle" id="service-intro">From idea to impact all in one place</p>
+          <p class="small-note">At BluePeak, we combine stunning design with scalable development to bring digital ideas to life faster and smarter.</p>
+        </div>
+        <ul class="service-list">
+          <li>UI/UX Design</li>
+          <li>Web Developments</li>
+          <li>Mobile App</li>
+          <li>Marketing</li>
+        </ul>
+        <p class="footer-note">Crafted for performance optimized for users</p>
+      </div>
+
+      <!-- Middle Column: 1 Top Image + 2 Bottom Boxes -->
+      <div class="col-middle">
+        <div class="card card-image mid-top-img">
+          <img src="image/teamwork main.jpg" alt="Team meeting" />
+        </div>
+
+        <div class="mid-bottom-row">
+          <div class="card card-navy">
+            <div>
+              <span class="pill-badge">Collaborative</span>
+              <h3>Collaborative Working Environment</h3>
+              <p>A space where teamwork, communication, and shared goals drive success.</p>
+            </div>
+            <a href="#contact" class="btn-white-sm">Start Collaborating</a>
+          </div>
+
+          <div class="card card-image">
+            <img src="image/teamwork1.jpg" alt="Office collaboration" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: 50% Stat Card + Tall Vertical Image Box -->
+      <div class="col-right">
+        <div class="card card-navy stat-card">
+          <h2 class="big-stat" id="stat-number">50%</h2>
+          <p id="stat-desc">Our new design and smart strategy helped boost user interaction by 50%. A clear example of how great UX and data work together.</p>
+        </div>
+
+        <div class="card card-image right-bottom-img">
+          <img src="image/Team.webp" alt="Team member smiling" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. ABOUT SECTION -->
+  <section class="section-block" id="about">
+    <div class="about-statement">
+      <div class="avatars">
+        <img src="image/headshot.jpg" alt="Member 1" />
+        <img src="image/headshot 2.png" alt="Member 2" />
+        <img src="image/headshot 3.webp" alt="Member 3" />
+      </div>
+      <div>
+        <span class="tag">About Us</span>
+        <p class="statement-text" id="about-text">
+          At BluePeak Digital, we see websites as more than just online pages — they’re growth engines for modern brands. Our team of designers and developers is focused on creating digital experiences that not only look great but also perform with purpose.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CONTACT SECTION -->
+  <section class="section-block" id="contact">
+    <div class="contact-grid">
+      <div class="card card-navy">
+        <div>
+          <span class="pill-badge">Get In Touch</span>
+          <h2 style="margin: 14px 0 8px; font-size: 1.6rem;">Let's Build Together</h2>
+          <p>Ready to upgrade your website or launch a new product? Reach out directly or send a quick inquiry.</p>
+          <div class="contact-details">
+            <p><strong>Email:</strong> <span id="contact-email">hello@bluepeakdigital.com</span></p>
+            <p><strong>Phone:</strong> <span id="contact-phone">+977 980-0000000</span></p>
+            <p><strong>Office:</strong> <span id="contact-address">Kathmandu, Nepal</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-white">
+        <h2>Book a Discovery Call</h2>
+        <p class="subtitle">We respond to all project inquiries within 24 hours.</p>
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('✅ Thank you! We will contact you soon.'); this.reset();">
+          <label>Your Name</label>
+          <input type="text" required placeholder="Alex Sharma" />
+          <label>Work Email</label>
+          <input type="email" required placeholder="alex@company.com" />
+          <label>Project Details</label>
+          <textarea rows="3" required placeholder="Tell us about your website or app goals..."></textarea>
+          <button type="submit" class="btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="logo" id="footer-brand">▲ BLUEPEAK DIGITAL</div>
+        <p class="footer-copy">Design & Tech That Takes You to the Top.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

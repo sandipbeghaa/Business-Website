@@ -1,0 +1,471 @@
+/* RESET & SMOOTH SCROLL */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: #111827;
+}
+
+/* Offset so sticky navbar never covers section titles when scrolling */
+.section-block {
+  scroll-margin-top: 90px;
+}
+
+/* 1. SOFT SKY-BLUE GRADIENT TOP */
+.top-wrapper {
+  background: linear-gradient(180deg, #93c5fd 0%, #bae6fd 35%, #e0f2fe 70%, #ffffff 100%);
+  padding: 0 6% 50px;
+}
+
+/* NAVBAR: Transparent at top (matches Artiflow image), solid white when scrolled! */
+.navbar {
+  position: relative;
+  z-index: 100;
+  background: transparent;
+  padding: 18px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* Solid white bar automatically added by JS when user scrolls down */
+.navbar.scrolled {
+  background: #ffffff;
+  padding: 14px 24px;
+  border-radius: 0 0 14px 14px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  color: #0f172a;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #1e293b;
+  font-size: 0.92rem;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* White Rounded Contact Button (Matches Screenshot 1) */
+.btn-outline {
+  background: #ffffff;
+  color: #0f172a;
+  text-decoration: none;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
+  display: inline-block;
+  transition: transform 0.15s ease;
+}
+
+.btn-outline:hover {
+  transform: translateY(-1px);
+}
+
+/* ROYAL BLUE PRIMARY BUTTON (Fixes BOOK A CALL & Send Message!) */
+.btn-primary {
+  background: #4338ca;
+  color: #ffffff;
+  text-decoration: none;
+  border: none;
+  padding: 13px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  margin-top: 22px;
+  display: inline-block;
+  box-shadow: 0 4px 14px rgba(67, 56, 202, 0.25);
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: #3730a3;
+  transform: translateY(-1px);
+}
+
+
+/* Mobile Circular Hamburger Button (Hidden on Desktop) */
+.mobile-menu-btn {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.45);
+  color: #0f172a;
+  font-size: 1.2rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile Dropdown Drawer */
+.mobile-drawer {
+  display: none;
+  position: absolute;
+  top: 72px;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.15);
+  flex-direction: column;
+  gap: 14px;
+  z-index: 200;
+}
+
+.mobile-drawer.open {
+  display: flex;
+}
+
+.mobile-drawer a {
+  text-decoration: none;
+  color: #0f172a;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 4px;
+}
+
+.mobile-drawer .mobile-cta {
+  text-align: center;
+  color: #ffffff;
+  margin-top: 6px;
+}
+
+
+.hero {
+  text-align: center;
+  max-width: 680px;
+  margin: 60px auto 20px;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  line-height: 1.15;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #0f172a;
+}
+
+.hero p {
+  color: #4b5563;
+  font-size: 0.98rem;
+}
+
+/* 2. BENTO GRID (SERVICES) */
+.bento-grid {
+  max-width: 1120px;
+  margin: 0 auto 70px;
+  padding: 0 6%;
+  display: grid;
+  grid-template-columns: 0.95fr 1.85fr 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.card {
+  border-radius: 16px;
+  padding: 22px;
+}
+
+.col-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-white {
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.tag {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-white h2 {
+  font-size: 1.25rem;
+  margin: 8px 0;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: #374151;
+  margin-bottom: 10px;
+}
+
+.small-note, .footer-note {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  line-height: 1.45;
+}
+
+.service-list {
+  list-style: none;
+  margin: 18px 0;
+}
+
+.service-list li {
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.col-middle {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mid-top-img {
+  height: 230px;
+}
+
+.mid-bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  flex: 1;
+}
+
+.col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.stat-card {
+  min-height: 175px;
+}
+
+.right-bottom-img {
+  flex: 1;
+  min-height: 250px;
+}
+
+.card-image {
+  padding: 0;
+  overflow: hidden;
+  background: #f1f5f9;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-navy {
+  background: #1e1b4b;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.big-stat {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.card-navy h3 {
+  font-size: 1rem;
+  margin: 10px 0 8px;
+  line-height: 1.3;
+}
+
+.card-navy p {
+  font-size: 0.82rem;
+  color: #c7d2fe;
+  line-height: 1.5;
+}
+
+.pill-badge {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 0.7rem;
+  display: inline-block;
+}
+
+.btn-white-sm {
+  background: white;
+  color: #1e1b4b;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 14px;
+  align-self: flex-start;
+  display: inline-block;
+}
+
+/* 3. ABOUT SECTION */
+.about-statement {
+  max-width: 1120px;
+  margin: 0 auto 80px;
+  padding: 0 6%;
+  display: grid;
+  grid-template-columns: 0.95fr 2.85fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.avatars {
+  display: flex;
+  align-items: center;
+  padding-top: 6px;
+}
+
+.avatars img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+  margin-right: -10px;
+  background: #e2e8f0;
+}
+
+.statement-text {
+  font-size: 1.5rem;
+  line-height: 1.45;
+  color: #1f2937;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+/* 4. CONTACT SECTION */
+.contact-grid {
+  max-width: 1120px;
+  margin: 0 auto 80px;
+  padding: 0 6%;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 20px;
+}
+
+.contact-details {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-form label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+/* 5. FOOTER */
+.site-footer {
+  border-top: 1px solid #f1f5f9;
+  background: #f8fafc;
+  padding: 36px 6%;
+}
+
+.footer-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-copy {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 18px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #4b5563;
+  font-size: 0.88rem;
+}
+
+/* MOBILE RESPONSIVENESS (Matches Screenshot 2 on phones!) */
+@media (max-width: 900px) {
+  .nav-links,
+  .desktop-cta {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .hero h1 {
+    font-size: 2.1rem;
+  }
+
+  .bento-grid,
+  .about-statement,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mid-bottom-row {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Studio | BluePeak Digital</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background: #f8fafc;
+      color: #0f172a;
+      min-height: 100vh;
+    }
+
+    /* EXACT SAME TRANSPARENT SKY-BLUE TOP & NAVBAR AS HOMEPAGE */
+    .admin-top-bg {
+      background: linear-gradient(180deg, #93c5fd 0%, #bae6fd 35%, #e0f2fe 70%, #f8fafc 100%);
+      padding: 0 6% 40px;
+    }
+
+    .admin-nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 18px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.5px;
+      color: #0f172a;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge-admin {
+      background: rgba(255, 255, 255, 0.75);
+      color: #4338ca;
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      border-radius: 99px;
+      font-weight: 700;
+    }
+
+    .nav-btns {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      color: #0f172a;
+      text-decoration: none;
+      border: none;
+      padding: 11px 20px;
+      border-radius: 10px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #4338ca;
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(67, 56, 202, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: #3730a3;
+    }
+
+    /* LOGIN SCREEN */
+    .login-wrapper {
+      max-width: 430px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid #f1f5f9;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+    }
+
+    .card-navy {
+      background: #1e1b4b;
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .card-tag {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #4338ca;
+      font-weight: 700;
+    }
+
+    label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #334155;
+      margin: 14px 0 6px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #0f172a;
+      font-size: 0.92rem;
+    }
+
+    input[type="color"] {
+      padding: 4px;
+      height: 44px;
+      cursor: pointer;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #4338ca;
+      background: #ffffff;
+    }
+
+    /* DASHBOARD GRID */
+    .dashboard-container {
+      max-width: 1120px;
+      margin: 0 auto 70px;
+      padding: 0 6%;
+    }
+
+    .dash-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 24px;
+    }
+
+    .bento-admin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .col-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .color-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1e1b4b;
+      color: white;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      display: none;
+      z-index: 200;
+    }
+
+    @media (max-width: 850px) {
+      .bento-admin-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MATCHING HOMEPAGE TOP BAR -->
+  <div class="admin-top-bg">
+    <nav class="admin-nav">
+      <a href="../index.html" class="logo">
+        ▲ BLUEPEAK DIGITAL <span class="badge-admin">CMS STUDIO</span>
+      </a>
+      <div class="nav-btns">
+        <a href="../index.html" target="_blank" class="btn-outline">↗ View Live Site</a>
+        <button id="logout-btn" class="btn-outline" style="display: none;" onclick="logoutAdmin()">Logout</button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 1. USERNAME & PASSWORD LOGIN -->
+  <div class="login-wrapper" id="login-screen">
+    <div class="card">
+      <span class="card-tag">Restricted Access</span>
+      <h1 style="font-size: 1.5rem; margin: 8px 0 6px;">Admin Login</h1>
+      <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 16px;">
+        Sign in to customize your website design, images, and content.
+      </p>
+
+      <label>Username</label>
+      <input type="text" id="user-input" placeholder="admin" />
+
+      <label>Password</label>
+      <input type="password" id="pass-input" placeholder="••••••••" onkeydown="if(event.key==='Enter') unlockAdmin()" />
+
+      <button class="btn-primary" style="width: 100%; margin-top: 20px;" onclick="unlockAdmin()">
+        Sign In to Dashboard →
+      </button>
+    </div>
+  </div>
+
+  <!-- 2. FULL CUSTOMIZATION DASHBOARD -->
+  <main class="dashboard-container" id="admin-dashboard" style="display: none;">
+    
+    <div class="dash-header">
+      <div>
+        <span class="card-tag">Full Site Customizer</span>
+        <h1 style="font-size: 1.8rem;">Design & Content Studio</h1>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn-outline" onclick="resetDefaults()">Reset All</button>
+        <button class="btn-primary" onclick="saveChanges()">Publish Live Changes</button>
+      </div>
+    </div>
+
+    <div class="bento-admin-grid">
+      
+      <!-- LEFT COLUMN: Design Theme & Images -->
+      <div class="col-stack">
+        
+        <div class="card">
+          <span class="card-tag">01 / Appearance & Theme</span>
+          <h2 style="font-size: 1.15rem; margin: 6px 0 10px;">Colors, Fonts & Layout</h2>
+
+          <div class="color-row">
+            <div>
+              <label>Primary Button Color</label>
+              <input type="color" id="in-primary-color" value="#4338ca" />
+            </div>
+            <div>
+              <label>Dark Bento Card Color</label>
+              <input type="color" id="in-navy-color" value="#1e1b4b" />
+            </div>
+          </div>
+
+          <label>Website Font Style</label>
+          <select id="in-font">
+            <option value='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'>Modern Clean (System Sans)</option>
+            <option value='Georgia, "Times New Roman", serif'>Editorial Luxury (Serif)</option>
+            <option value='"Courier New", Courier, monospace'>Tech / Developer (Monospace)</option>
+          </select>
+
+          <label>Bento Card Corner Style</label>
+          <select id="in-radius">
+            <option value="16px">Soft Rounded (16px - Default)</option>
+            <option value="28px">Extra Pill Rounded (28px)</option>
+            <option value="4px">Sharp Corporate Edges (4px)</option>
+          </select>
+        </div>
+
+        <div class="card">
+          <span class="card-tag">02 / Media & Photos</span>
+          <h2 style="font-size: 1.15rem; margin: 6px 0 10px;">Bento Grid Images</h2>
+          <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 10px;">
+            Enter a local folder path (e.g. <code>image/Team.webp</code>) or paste any online image URL.
+          </p>
+
+          <label>Top Wide Team Image</label>
+          <input type="text" id="in-img-top" />
+
+          <label>Bottom Middle Collaboration Image</label>
+          <input type="text" id="in-img-mid" />
+
+          <label>Bottom Right Portrait Image</label>
+          <input type="text" id="in-img-right" />
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: All Website Text & Contact Info -->
+      <div class="col-stack">
+        
+        <div class="card">
+          <span class="card-tag">03 / Brand & Hero Text</span>
+          <h2 style="font-size: 1.15rem; margin: 6px 0 10px;">Homepage Headlines</h2>
+
+          <label>Business Name</label>
+          <input type="text" id="in-brand" />
+
+          <label>Main Hero Headline</label>
+          <input type="text" id="in-hero-title" />
+
+          <label>Hero Subtitle</label>
+          <textarea rows="2" id="in-hero-desc"></textarea>
+
+          <label>Services Card Subtitle</label>
+          <input type="text" id="in-service-intro" />
+        </div>
+
+        <div class="card">
+          <span class="card-tag">04 / Metrics & Story</span>
+          <h2 style="font-size: 1.15rem; margin: 6px 0 10px;">Highlight Card & About</h2>
+
+          <label>Highlight Stat (e.g. 50%)</label>
+          <input type="text" id="in-stat-num" />
+
+          <label>Stat Description</label>
+          <textarea rows="2" id="in-stat-desc"></textarea>
+
+          <label>About Statement Paragraph</label>
+          <textarea rows="3" id="in-about-story"></textarea>
+        </div>
+
+        <div class="card">
+          <span class="card-tag">05 / Contact Section</span>
+          <h2 style="font-size: 1.15rem; margin: 6px 0 10px;">Business Contact Info</h2>
+
+          <label>Public Email</label>
+          <input type="email" id="in-email" />
+
+          <label>Phone Number</label>
+          <input type="text" id="in-phone" />
+
+          <label>Office Location</label>
+          <input type="text" id="in-address" />
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+  <script src="/admin/script.js"></script>
+</body>
+</html>
